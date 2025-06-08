@@ -1,0 +1,47 @@
+/* @sius.psrb */
+/* global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+/* whatsapp bot */
+body {
+    background-color: #121212;
+    color: #f0f0f0;
+    padding: 20px;
+}
+/* baileys */
+.card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+}
+.card:hover {
+    transform: scale(1.02);
+}
+/* itsuki-md */
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+/* button */
+.button {
+    background-color: #4e9af1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.button:hover {
+    background-color: #3178c6;
+}
