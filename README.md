@@ -82,20 +82,20 @@ Untuk menambahkan fitur, cukup tambahkan file .js dengan format dibawah didalam 
 
 ```js
 commands.add({
-  name: ['nama1','nama2', ...], // nama event
-  command: ['nama1', 'nama2', ...], // trigger command
-  alias: ['alias1', 'alias2'], // alias command (opsional)
-  category: 'fun', // kategori menu
-  desc: 'deskripsi fitur',
-  admin: false,    // true jika hanya admin grup
-  group: false,    // true jika hanya bisa dipakai di grup
-  botAdmin: false, // true jika bot harus admin
-  owner: false,    // true jika hanya owner bot
-  premium: false,  // true jika hanya premium user
-  limited: false,  // true jika pakai limit
-  run: async ({ sius, m, args, Func, dl }) => {
+    name: ['nama1','nama2', ...], // nama event
+    command: ['nama1', 'nama2', ...], // trigger command
+    alias: ['alias1', 'alias2'], // alias command (opsional)
+    category: 'fun', // kategori menu
+    desc: 'deskripsi fitur',
+    admin: false,    // true jika hanya admin grup
+    group: false,    // true jika hanya bisa dipakai di grup
+    botAdmin: false, // true jika bot harus admin
+    owner: false,    // true jika hanya owner bot
+    premium: false,  // true jika hanya premium user
+    limited: false,  // true jika pakai limit
+    run: async ({ sius, m, args, Func, dl }) => {
     // Logic fitur disini
-  }
+    }
 })
 ```
 
@@ -120,21 +120,21 @@ commands.add({
 
 ```js
 commands.add({
-  name: ['say'],
-  command: ['say'],
-  alias: ['ucap'],
-  category: 'fun',
-  desc: 'Bot akan mengulang teks yang kamu kirim',
-  admin: false,
-  group: false,
-  botAdmin: false,
-  owner: false,
-  premium: false,
-  limited: false,
-  run: async ({ m, args }) => {
-    if (!args[0]) return m.reply('Contoh: .say halo dunia!')
-    m.reply(args.join(' '))
-  }
+    name: ['say'],
+    command: ['say'],
+    alias: ['ucap'],
+    category: 'fun',
+    desc: 'Bot akan mengulang teks yang kamu kirim',
+    admin: false,
+    group: false,
+    botAdmin: false,
+    owner: false,
+    premium: false,
+    limited: false,
+    run: async ({ m, args }) => {
+        if (!args[0]) return m.reply('Contoh: .say halo dunia!')
+        m.reply(args.join(' '))
+    }
 })
 ```
 
@@ -143,51 +143,51 @@ commands.add({
 ### CAROUSEL MESSAGE
 
 ```js
-await sius.sendCarousel('628xxxx@s.whatsapp.net', 'Cek promo terbaru kami!', [
-  {
-    header: {
-      image: 'https://telegra.ph/file/0c06df94c1d8f5bd82d64.jpg'
-    },
-    body: {
-      title: 'Promo Spesial',
-      subtitle: 'Diskon 70%!',
-      description: 'Berlaku sampai 10 Juni 2025'
-    },
-    nativeFlowMessage: {
-      buttons: [
+sius.sendCarousel('628xxxx@s.whatsapp.net', 'Cek promo terbaru kami!', [
+    {
+        header: {
+            image: 'https://telegra.ph/file/0c06df94c1d8f5bd82d64.jpg'
+        },
+        body: {
+            title: 'Promo Spesial',
+            subtitle: 'Diskon 70%!',
+            description: 'Berlaku sampai 10 Juni 2025'
+        },
+        nativeFlowMessage: {
+        buttons: [
         {
-          name: 'cta_url',
-          buttonParamsJson: JSON.stringify({
-            display_text: 'Lihat Sekarang',
-            url: 'https://tokomu.com/promo'
-          })
+            name: 'cta_url',
+            buttonParamsJson: JSON.stringify({
+                display_text: 'Lihat Sekarang',
+                url: 'https://tokomu.com/promo'
+            })
         }
-      ]
-    }
-  },
-  {
-    header: {
-      image: 'https://telegra.ph/file/d5e8a1fa7588e7e3dba1d.jpg'
+        ]
+        }
     },
-    body: {
-      title: 'Voucher Gratis Ongkir',
-      subtitle: 'Khusus pengguna baru',
-      description: 'Claim sebelum kehabisan'
-    },
-    nativeFlowMessage: {
-      buttons: [
+    {
+        header: {
+            image: 'https://telegra.ph/file/d5e8a1fa7588e7e3dba1d.jpg'
+        },
+        body: {
+            title: 'Voucher Gratis Ongkir',
+            subtitle: 'Khusus pengguna baru',
+            description: 'Claim sebelum kehabisan'
+        },
+        nativeFlowMessage: {
+        buttons: [
         {
-          name: 'cta_url',
-          buttonParamsJson: JSON.stringify({
-            display_text: 'Claim Sekarang',
-            url: 'https://tokomu.com/voucher'
-          })
+            name: 'cta_url',
+            buttonParamsJson: JSON.stringify({
+                display_text: 'Claim Sekarang',
+                url: 'https://tokomu.com/voucher'
+            })
         }
-      ]
+        ]
     }
-  }
+    }
 ], null, {
-  footer: 'Powered by sius.bot'
+  footer: 'Powered by ©siuspsrb'
 })
 ```
 ---
@@ -195,23 +195,23 @@ await sius.sendCarousel('628xxxx@s.whatsapp.net', 'Cek promo terbaru kami!', [
 ### BUTTON MESSAGE
 
 ```js
-await sius.sendButton('628xxxx@s.whatsapp.net', [
-  ['Tombol 1', '.command1'],
-  ['Tombol 2', '.command2']
+sius.sendButton('628xxxx@s.whatsapp.net', [
+    ['Tombol 1', '.command1'],
+    ['Tombol 2', '.command2']
 ], {
-  text: 'Pilih salah satu tombol di bawah ini:',
-  footer: 'Powered by sius.bot'
+    text: 'Pilih salah satu tombol di bawah ini:',
+    footer: 'Powered by ©siuspsrb'
 })
 ```
 
 ```js
-await sius.sendButton('628xxxx@s.whatsapp.net', [
-  ['Lihat Promo', '.promo'],
-  ['Menu Lain', '.menu']
+sius.sendButton('628xxxx@s.whatsapp.net', [
+    ['Lihat Promo', '.promo'],
+    ['Menu Lain', '.menu']
 ], {
-  image: { url: 'https://telegra.ph/file/abc123.jpg' },
-  caption: 'Promo Hari Ini 🔥',
-  footer: 'Klik tombol di bawah'
+    image: { url: 'https://telegra.ph/file/abc123.jpg' },
+    caption: 'Promo Hari Ini 🔥',
+    footer: 'Klik tombol di bawah'
 })
 ```
 
@@ -220,7 +220,7 @@ await sius.sendButton('628xxxx@s.whatsapp.net', [
 ### CONTACT MESSAGE
 
 ```js
-await sius.sendContact('628xxxx@s.whatsapp.net', ['6281234567890', '6289876543210'], m)
+sius.sendContact('628xxxx@s.whatsapp.net', ['6281234567890', '6289876543210'], m)
 ```
 
 ---
@@ -228,14 +228,14 @@ await sius.sendContact('628xxxx@s.whatsapp.net', ['6281234567890', '628987654321
 ### CHANNEL FORWARD PREVIEW
 
 ```js
-await sius.adChannel(
-  'Update baru dari bot!',      // q → isi pesan utama
-  {
-    txt: 'sius.bot update',     // txt → nama channel yg muncul
-    title: 'Cek Channel Kami',  // title → judul preview
-    thumb: 'https://telegra.ph/file/abc123.jpg', // thumb → thumbnail (bisa URL)
-    render: true                // render → true untuk thumbnail besar
-  }
+sius.adChannel(
+    'Update baru dari bot!',      // isi pesan utama
+    {
+        txt: 'sius.bot update',     // nama channel yg muncul
+        title: 'Cek Channel Kami',  // title preview
+        thumb: 'https://telegra.ph/file/abc123.jpg', thumbnail
+        render: true                // true untuk thumbnail besar
+    }
 )
 ```
 
@@ -244,11 +244,11 @@ await sius.adChannel(
 ### REPLY WITH PREVIEW
 
 ```js
-await sius.reply(
-  '628xxxx@s.whatsapp.net',     // chat → JID tujuan
-  'Halo! Cek fitur terbaru ya~', // q → isi pesan utama
-  'sius.bot',                    // sil → judul link preview
-  true                           // renderLarge → true untuk thumbnail besar
+sius.reply(
+    '628xxxx@s.whatsapp.net',     // JID tujuan
+    'Halo! Cek fitur terbaru ya~', // isi pesan utama
+    'sius.bot',                    //judul link preview
+    true                           // true untuk thumbnail besar
 )
 ``` 
 
