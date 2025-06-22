@@ -124,13 +124,14 @@ commands.reset()                 // hapus semua command dari memory
 ### PROPERTI COMMANDS
 
 ```js
+{
   name: ["cekcmd"],           // (required) nama internal command
   command: ["cekcmd"],        // (required) trigger command utama
   alias: ["infocmd"],         // (optional) alias tambahan
   category: "utility",        // (required) kategori fitur
   desc: "cek info command",   // (optional) deskripsi singkat
   usage: "<query>",           // (optional) format cara pakai
-  example: ".cekcmd menu",    // (optional) contoh pemakaian
+  example: "menu",    // (optional) contoh pemakaian, query nya aja g usah ikut commandny
   param: "<text>",            // (optional) fallback argumen kalau kosong
   cooldown: 10,               // (optional) jeda per user (detik)
   limited: true,              // (optional) pakai limit user?
