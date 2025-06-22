@@ -6,7 +6,7 @@
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
 </p>
-
+![Stars](https://img.shields.io/github/stars/siuspsrb/Itsuki-Bot?style=social)
 ---
 
 ## SETTINGS
