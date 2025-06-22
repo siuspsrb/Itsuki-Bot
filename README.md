@@ -131,10 +131,10 @@ commands.reset()                 // hapus semua command dari memory
   category: "utility",        // (required) kategori fitur
   desc: "cek info command",   // (optional) deskripsi singkat
   usage: "<query>",           // (optional) format cara pakai
-  example: "menu",    // (optional) contoh pemakaian, query nya aja g usah ikut commandny
+  example: "menu",            // (optional) contoh pemakaian, query nya aja g usah ikut commandny
   param: "<text>",            // (optional) fallback argumen kalau kosong
   cooldown: 10,               // (optional) jeda per user (detik)
-  limited: true,              // (optional) pakai limit user?
+  limit: 2,                   // (optional) pakai limit user?
   premium: false,             // (optional) hanya user premium?
   level: 5,                   // (optional) minimal level user
   owner: false,               // (optional) hanya owner?
@@ -145,9 +145,10 @@ commands.reset()                 // hapus semua command dari memory
   register: false,            // (optional) butuh register user?
   enable: true,               // (optional) aktif/nonaktif
   hidden: false,              // (optional) disembunyikan dari menu
+  privatechat: false,         // (optional) hanya di private chat?
   dependencies: [],           // (optional) list module yg wajib ada
 
-  run: async ({ sius, m, args, text, Func }) => {} // (required) fungsi eksekusi
+  run: async ({ sius, m, args, text, Func, dl }) => {} // (required) fungsi eksekusi
 }
 ```
 
