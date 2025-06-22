@@ -98,6 +98,7 @@ commands.add({
     usage: "<text>", // param tampilan menu
     example: "https://github..", // contoh input text yang akan diberikan
     register: true, // harus daftar fulu
+    level: 2, // minimal level 2 biar dpt akses
     run: async ({ sius, m, text, args, Func, dl }) => {
     // Logic fitur disini
     }
