@@ -7,7 +7,7 @@
 [![ESM](https://img.shields.io/badge/ESM-green?style=for-the-badge)](#)
 [![Itsuki Nakano](https://img.shields.io/badge/Itsuki%20Nakano-ff8bcb?style=for-the-badge)](#)
 [![SIUS](https://img.shields.io/badge/SIUS-cyan?style=for-the-badge)](https://github.com/siuspsrb)
-[![Open Source](https://img.shields.io/badge/Open%20Source?style=for-the-badge&logo=github)](https://github.com/siuspsrb/Itsuki-Bot)
+[![Open Source](https://img.shields.io/badge/Open%20Source-PUBLIC-0df?style=for-the-badge&logo=github)](https://github.com/siuspsrb/Itsuki-Bot)
 
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
