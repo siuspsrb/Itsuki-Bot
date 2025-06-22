@@ -390,12 +390,6 @@ Jika berhasil, akan memberikanmu pesan seperti: `SUCCESS: specified value was sa
       </a>
     </td>
     <td align="center">
-      <a href="https://github.com/naze">
-        <img src="https://github.com/naze.png" width="100"/><br/>
-        <sub>@Xdlyy</sub>
-      </a>
-    </td>
-    <td align="center">
       <a href="https://github.com/ilmanhdyt">
         <img src="https://github.com/ilmanhdyt.png" width="100"/><br/>
         <sub>@Ilman</sub>
