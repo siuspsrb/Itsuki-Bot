@@ -1,5 +1,5 @@
 ### SIMPLE WHATSAPP BOT BASE
-<img src="https://i.pinimg.com/originals/20/15/4a/20154a72a9b841345cb3f7ad8ba8683a.jpg" alt="ITSUKI NAKANO" width="300" />
+<img src="https://i.pinimg.com/originals/20/15/4a/20154a72a9b841345cb3f7ad8ba8683a.jpg" alt="ITSUKI NAKANO" width="450" />
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com) [![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 
