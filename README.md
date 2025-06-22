@@ -1,7 +1,7 @@
 ### ITSUKI WHATSAPP BOT BASE ![Stars](https://img.shields.io/github/stars/siuspsrb/Itsuki-Bot?style=social)
 <img src="https://i.pinimg.com/originals/20/15/4a/20154a72a9b841345cb3f7ad8ba8683a.jpg" alt="ITSUKI NAKANO" width="450" />
 
-[![Baileys](https://img.shields.io/badge/baileys-%20nstar--y-blue?style=for-the-badge)](https://github.com/nstar-y/bail)
+[![Baileys](https://img.shields.io/badge/baileys-%20nstar-blue?style=for-the-badge)](https://github.com/nstar-y/bail)
 [![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com)
 [![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![ESM](https://img.shields.io/badge/ESModule-%F0%9F%94%A5%20Enabled-blue?style=for-the-badge)](#)
