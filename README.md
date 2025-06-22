@@ -105,6 +105,22 @@ commands.add({
 })
 ```
 
+## COMMANDS METHOD
+```js
+commands.add(event)               // tambah fitur ke sistem
+commands.remove(name)            // hapus command by name[0]
+commands.findCommand(query)      // cari command/alias
+commands.setCommandState(name, bool) // enable/disable command
+commands.getAllCommands(filters) // ambil semua command (bisa difilter)
+commands.getByCategory(category) // ambil command per kategori
+commands.getCategories()         // ambil semua kategori unik
+commands.incrementUsage(name)    // tambahkan counter + update lastUsed
+commands.getStats(name?)         // statistik (usage & waktu pakai)
+commands.checkCooldown(name, userId) // cek apakah user dalam cooldown
+commands.setCooldown(name, userId)   // set cooldown untuk user
+commands.reset()                 // hapus semua command dari memory
+```
+
 ### PROPERTI COMMANDS
 
 | Property     | Tipe     | Keterangan                                                                 |
