@@ -123,20 +123,33 @@ commands.reset()                 // hapus semua command dari memory
 
 ### PROPERTI COMMANDS
 
-| Property     | Tipe     | Keterangan                                                                 |
-|--------------|----------|-----------------------------------------------------------------------------|
-| `name`       | Array    | Nama utama fitur (untuk identifikasi)                                       |
-| `command`    | Array    | Daftar perintah yang bisa memicu fitur                                      |
-| `alias`      | Array    | Alias command (optional, bisa kosong)                                       |
-| `category`   | String   | Kategori menu, ditampilkan di daftar menu                                   |
-| `desc`       | String   | Deskripsi pendek buat fitur (ditampilkan di menu)                           |
-| `admin`      | Boolean  | Hanya bisa dijalankan oleh admin grup kalau `true`                          |
-| `group`      | Boolean  | Harus dijalankan dalam grup kalau `true`                                    |
-| `botAdmin`   | Boolean  | Bot harus jadi admin kalau `true`                                           |
-| `owner`      | Boolean  | Hanya owner bot yang bisa jalankan kalau `true`                             |
-| `premium`    | Boolean  | Fitur hanya buat user premium                                               |
-| `limited`    | Boolean  | Pakai sistem limit? Kalau `true`, user bakal kena limit per command         |
-| `run`        | Function() | Fungsi utama yang bakal dijalankan saat command dipanggil                   |
+```js
+  name: ["cekcmd"],           // (required) nama internal command
+  command: ["cekcmd"],        // (required) trigger command utama
+  alias: ["infocmd"],         // (optional) alias tambahan
+  category: "utility",        // (required) kategori fitur
+  desc: "cek info command",   // (optional) deskripsi singkat
+  usage: "<query>",           // (optional) format cara pakai
+  example: ".cekcmd menu",    // (optional) contoh pemakaian
+  param: "<text>",            // (optional) fallback argumen kalau kosong
+  cooldown: 10,               // (optional) jeda per user (detik)
+  limited: true,              // (optional) pakai limit user?
+  premium: false,             // (optional) hanya user premium?
+  level: 5,                   // (optional) minimal level user
+  owner: false,               // (optional) hanya owner?
+  group: false,               // (optional) hanya di grup?
+  admin: false,               // (optional) hanya admin grup?
+  botAdmin: false,            // (optional) bot harus admin?
+  private: false,             // (optional) hanya di private chat?
+  register: false,            // (optional) butuh register user?
+  enable: true,               // (optional) aktif/nonaktif
+  hidden: false,              // (optional) disembunyikan dari menu
+  dependencies: [],           // (optional) list module yg wajib ada
+
+  run: async ({ sius, m, args, text, Func }) => {} // (required) fungsi eksekusi
+}
+```
+
 
 ### CONTOH COMMAND
 
