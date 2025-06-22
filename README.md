@@ -92,8 +92,13 @@ commands.add({
     botAdmin: false, // true jika bot harus admin
     owner: false,    // true jika hanya owner bot
     premium: false,  // true jika hanya premium user
-    limited: false,  // true jika pakai limit
-    run: async ({ sius, m, args, Func, dl }) => {
+    limit: 5,  // memakai 5 limit
+    cooldown: 10, // 10 detik cooldown fitur
+    query: true, // true jika membutuhkan input text dari user
+    usage: "<text>", // param tampilan menu
+    example: "https://github..", // contoh input text yang akan diberikan
+    register: true, // harus daftar fulu
+    run: async ({ sius, m, text, args, Func, dl }) => {
     // Logic fitur disini
     }
 })
