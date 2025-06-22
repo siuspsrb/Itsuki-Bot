@@ -2,6 +2,11 @@
 <img src="https://i.pinimg.com/originals/20/15/4a/20154a72a9b841345cb3f7ad8ba8683a.jpg" alt="ITSUKI NAKANO" width="450" />
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com) [![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+![Stars](https://img.shields.io/github/stars/siuspsrb/Itsuki-Bot?style=social)
+![License](https://img.shields.io/github/license/siuspsrb/Itsuki-Bot)
+![Node.js](https://img.shields.io/badge/Node.js-18.x-green)
+![Last Commit](https://img.shields.io/github/last-commit/siuspsrb/Itsuki-Bot)
+![Repo Size](https://img.shields.io/github/repo-size/siuspsrb/Itsuki-Bot)
 
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
