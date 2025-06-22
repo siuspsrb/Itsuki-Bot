@@ -4,9 +4,9 @@
 [![Baileys](https://img.shields.io/badge/baileys-%20nstar-blue?style=for-the-badge)](https://github.com/nstar-y/bail)
 [![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com)
 [![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![ESM](https://img.shields.io/badge/ESM-Supported-blue?style=for-the-badge)](#)
+[![ESM](https://img.shields.io/badge/ESM-green?style=for-the-badge)](#)
 [![Itsuki Nakano](https://img.shields.io/badge/Itsuki%20Nakano-ff8bcb?style=for-the-badge)](#)
-[![SIUS](https://img.shields.io/badge/SIUS-creator-cyan?style=for-the-badge)](https://github.com/siuspsrb)
+[![SIUS](https://img.shields.io/badge/SIUS-cyan?style=for-the-badge)](https://github.com/siuspsrb)
 
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
