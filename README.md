@@ -5,6 +5,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com)
 [![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
 [![ESM](https://img.shields.io/badge/ESModule-%F0%9F%94%A5%20Enabled-blue?style=for-the-badge)](#)
+[![Itsuki Nakano](https://img.shields.io/badge/Inspiration-Itsuki%20Nakano-ff8bcb?style=for-the-badge)](#)
 
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
