@@ -37,7 +37,7 @@ commands.add({
     desc: "membersihkan file cache sampah",
     run: async ({ sius, m }) => {
         try {
-            const dirPath = path.join(process.cwd(), "lib/media/sampah")
+            const dirPath = path.join(process.cwd(), "lib/database/sampah")
             try {
                 await fs.access(dirPath)
             } catch {
@@ -45,7 +45,7 @@ commands.add({
             }
             const files = await fs.readdir(dirPath, { withFileTypes: true })
             if (!files.length) {
-                return m.reply("[×] Folder lib/media/sampah kosong, tidak ada yang perlu dihapus!")
+                return m.reply("[×] Folder sampah kosong, tidak ada yang perlu dihapus!")
             }
             const itemsToDelete = files.filter(item => item.name !== "@sius.psrb")
             if (!itemsToDelete.length) {
@@ -67,7 +67,7 @@ commands.add({
                     sius.cantLoad(err)
                 }
             }
-            await m.reply(`[√] Cache berhasil dihapus! ${deletedCount} item dihapus dari lib/media/sampah.`)
+            await m.reply(`[√] Cache berhasil dihapus! ${deletedCount} item dihapus dari folder sampah.`)
         } catch (err) {
             console.error("[ ERROR ] clearcache :", err)
             m.reply(`gagal menghapus cache: ${err.message || err}`)
