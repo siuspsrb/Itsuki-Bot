@@ -65,6 +65,7 @@
         "similarity": "^1.2.1",
         "syntax-error": "^1.4.0",
         "translate-google-api": "^1.0.4",
+        "wa-sticker-formatter": "^4.3.2",
         "ws": "^8.13.0",
         "xmlhttprequest": "^1.8.0",
         "yargs": "^17.6.2",
