@@ -14,7 +14,7 @@ Output: 1. kirim react 👋
 commands.add({
     name: ["addfitur"],
     command: ["addfitur", "addfeature"],
-    category: "command - handler",
+    category: "command-handler",
     owner: true,
     query: true,
     usage: "<field: value, ...>",
