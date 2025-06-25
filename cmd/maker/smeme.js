@@ -51,7 +51,7 @@ async function createSticker(img, packName, authorName, quality = 100) {
     let stickerMetadata = {
         type: "full",
         pack: packName,
-        author: authorName || "zenz nih",
+        author: authorName || "siuspsrb",
         quality
     }
     return (new Sticker(img, stickerMetadata)).toBuffer()
