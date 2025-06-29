@@ -1,7 +1,13 @@
-### SIMPLE WHATSAPP BOT BASE
-<img src="https://i.pinimg.com/originals/10/89/b7/1089b740dac97fa69b6a0e9f7de03177.jpg" alt="ITSUKI NAKANO" width="300" />
+### ITSUKI WHATSAPP BOT BASE ![Stars](https://img.shields.io/github/stars/siuspsrb/Itsuki-Bot?style=social)
+<img src="https://i.pinimg.com/originals/20/15/4a/20154a72a9b841345cb3f7ad8ba8683a.jpg" alt="ITSUKI NAKANO" width="435" />
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com) [![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Baileys](https://img.shields.io/badge/baileys-%20nstar-blue?style=for-the-badge)](https://github.com/nstar-y/bail)
+[![JavaScript](https://img.shields.io/badge/JavaScript-d6cc0f?style=for-the-badge&logo=javascript&logoColor=white)](https://javascript.com)
+[![NodeJS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![ESM](https://img.shields.io/badge/ESM-green?style=for-the-badge)](#)
+[![Itsuki Nakano](https://img.shields.io/badge/Itsuki%20Nakano-ff8bcb?style=for-the-badge)](#)
+[![SIUS](https://img.shields.io/badge/SIUS-cyan?style=for-the-badge)](https://github.com/siuspsrb)
+[![OpenSource](https://img.shields.io/badge/OpenSource---yellowgreen?style=for-the-badge&logo=github)](https://github.com/siuspsrb/Itsuki-Bot)
 
 <p align="left">
   Base Whatsapp Bot simple, rapi terstruktur, yang dapat kamu gunakan sebagaimana mungkin dengan mudah, gampang tanpa banyak kendala.
@@ -92,29 +98,66 @@ commands.add({
     botAdmin: false, // true jika bot harus admin
     owner: false,    // true jika hanya owner bot
     premium: false,  // true jika hanya premium user
-    limited: false,  // true jika pakai limit
-    run: async ({ sius, m, args, Func, dl }) => {
+    limit: 5,  // memakai 5 limit
+    cooldown: 10, // 10 detik cooldown fitur
+    query: true, // true jika membutuhkan input text dari user
+    usage: "<text>", // param tampilan menu
+    example: "https://github..", // contoh input text yang akan diberikan
+    register: true, // harus daftar fulu
+    level: 2, // minimal level 2 biar dpt akses
+    run: async ({ sius, m, text, args, Func, dl }) => {
     // Logic fitur disini
     }
 })
 ```
 
+## COMMANDS METHOD
+```js
+commands.add(event)               // tambah fitur ke sistem
+commands.remove(name)            // hapus command by name[0]
+commands.findCommand(query)      // cari command/alias
+commands.setCommandState(name, bool) // enable/disable command
+commands.getAllCommands(filters) // ambil semua command (bisa difilter)
+commands.getByCategory(category) // ambil command per kategori
+commands.getCategories()         // ambil semua kategori unik
+commands.incrementUsage(name)    // tambahkan counter + update lastUsed
+commands.getStats(name?)         // statistik (usage & waktu pakai)
+commands.checkCooldown(name, userId) // cek apakah user dalam cooldown
+commands.setCooldown(name, userId)   // set cooldown untuk user
+commands.reset()                 // hapus semua command dari memory
+```
+
 ### PROPERTI COMMANDS
 
-| Property     | Tipe     | Keterangan                                                                 |
-|--------------|----------|-----------------------------------------------------------------------------|
-| `name`       | Array    | Nama utama fitur (untuk identifikasi)                                       |
-| `command`    | Array    | Daftar perintah yang bisa memicu fitur                                      |
-| `alias`      | Array    | Alias command (optional, bisa kosong)                                       |
-| `category`   | String   | Kategori menu, ditampilkan di daftar menu                                   |
-| `desc`       | String   | Deskripsi pendek buat fitur (ditampilkan di menu)                           |
-| `admin`      | Boolean  | Hanya bisa dijalankan oleh admin grup kalau `true`                          |
-| `group`      | Boolean  | Harus dijalankan dalam grup kalau `true`                                    |
-| `botAdmin`   | Boolean  | Bot harus jadi admin kalau `true`                                           |
-| `owner`      | Boolean  | Hanya owner bot yang bisa jalankan kalau `true`                             |
-| `premium`    | Boolean  | Fitur hanya buat user premium                                               |
-| `limited`    | Boolean  | Pakai sistem limit? Kalau `true`, user bakal kena limit per command         |
-| `run`        | Function() | Fungsi utama yang bakal dijalankan saat command dipanggil                   |
+```js
+{
+  name: ["cekcmd"],           // (required) nama internal command
+  command: ["cekcmd"],        // (required) trigger command utama
+  alias: ["infocmd"],         // (optional) alias tambahan
+  category: "utility",        // (required) kategori fitur
+  desc: "cek info command",   // (optional) deskripsi singkat
+  usage: "<query>",           // (optional) format cara pakai
+  example: "menu",            // (optional) contoh pemakaian, query nya aja g usah ikut commandny
+  param: "<text>",            // (optional) fallback argumen kalau kosong
+  cooldown: 10,               // (optional) jeda per user (detik)
+  limit: 2,                   // (optional) pakai limit user?
+  premium: false,             // (optional) hanya user premium?
+  level: 5,                   // (optional) minimal level user
+  owner: false,               // (optional) hanya owner?
+  group: false,               // (optional) hanya di grup?
+  admin: false,               // (optional) hanya admin grup?
+  botAdmin: false,            // (optional) bot harus admin?
+  private: false,             // (optional) hanya di private chat?
+  register: false,            // (optional) butuh register user?
+  enable: true,               // (optional) aktif/nonaktif
+  hidden: false,              // (optional) disembunyikan dari menu
+  privatechat: false,         // (optional) hanya di private chat?
+  dependencies: [],           // (optional) list module yg wajib ada
+
+  run: async ({ sius, m, args, text, Func, dl }) => {} // (required) fungsi eksekusi
+}
+```
+
 
 ### CONTOH COMMAND
 
@@ -344,12 +387,6 @@ Jika berhasil, akan memberikanmu pesan seperti: `SUCCESS: specified value was sa
       <a href="https://github.com/zackmans">
         <img src="https://github.com/zackmans.png" width="100"/><br/>
         <sub>@zackmans</sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/xdlyy404">
-        <img src="https://github.com/xdlyy404.png" width="100"/><br/>
-        <sub>@Xdlyy</sub>
       </a>
     </td>
     <td align="center">
