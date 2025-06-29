@@ -1,0 +1,205 @@
+commands.add({
+    name: ["fishing"],
+    command: ["fishing"],
+    category: "rpg",
+    desc: "Memancing di sungai berkilau Lembah Arvandor",
+    run: async ({ sius, m, args, Func }) => {
+        const userId = m.sender
+        let user = db.users[userId]
+        db.users[userId] = user
+        sius.fishing = sius.fishing || {}
+        const now = Date.now()
+        
+        // subcommand
+        const action = args[0]?.toLowerCase() || "status"
+        
+        // daftar tangkapan
+        const catches = [
+            { type: "fish", name: "Star Minnow", money: 50, chance: 0.6 },
+            { type: "fish", name: "Moon Carp", money: 200, chance: 0.3 },
+            { type: "fish", name: "Celestial Trout", money: 500, chance: 0.1 },
+            { type: "item", name: "petFood", chance: 0.3 },
+            { type: "item", name: "wood", chance: 0.2 },
+            { type: "item", name: "iron", chance: 0.2 },
+            { type: "item", name: "string", chance: 0.2 }
+        ]
+        
+        // cek apakah pengguna sedang memancing
+        let fishing = sius.fishing[userId]
+        
+        // reset sesi jika tidak aktif > 30 menit
+        if (fishing && fishing.lastCast && now > fishing.lastCast + 1800000) {
+            delete sius.fishing[userId]
+            fishing = null
+        }
+        
+        if (action === "start") {
+            // mulai memancing
+            if (fishing) {
+                return m.reply(`Kamu sudah memancing di sungai Lembah Arvandor!\n\n> Gunakan *!fishing cast* untuk melempar kail atau *!fishing leave* untuk berhenti.`)
+            }
+            
+            const moneyCost = 50
+            const limitCost = 1
+            const useLimit = user.money < moneyCost && user.limit >= limitCost
+            
+            if (user.money < moneyCost && !useLimit) {
+                return m.reply(`Kamu perlu 💸 ${moneyCost} Money atau ⏳ ${limitCost} Limit untuk membeli umpan! Kamu punya: 💸 ${user.money}, ⏳ ${user.limit}`)
+            }
+            
+            if (useLimit) {
+                user.limit -= limitCost
+            } else {
+                user.money -= moneyCost
+            }
+            
+            sius.fishing[userId] = {
+                active: true,
+                bait: 1,
+                lastCast: 0
+            }
+            
+            const expGain = 10
+            Func.addExp(user, expGain)
+            
+            let replyText = `🌊 *Memancing di Sungai Bintang Arvandor!*\n\n`
+            replyText += `Kamu duduk di tepi sungai yang berkilau, di bawah naungan pohon-pohon bercahaya Lembah Arvandor. Umpanmu siap, kailmu menggoda arus takdir! ${user.activePet ? `*${user.activePet.toUpperCase()}* menatap air, menanti ikan besar!` : ""}\n\n`
+            replyText += `💥 Biaya Umpan: ${useLimit ? `⏳ ${limitCost} Limit` : `💸 ${moneyCost} Money`}\n`
+            replyText += `🎣 Umpan Tersisa: ${sius.fishing[userId].bait}\n`
+            replyText += `🎁 Kamu mendapatkan: ${expGain} EXP\n`
+            replyText += `\n> Gunakan *!fishing cast* untuk melempar kail atau !fishing leave untuk berhenti!`
+            
+            m.reply(replyText)
+        } else if (action === "cast") {
+            // Lempar kail
+            if (!fishing) {
+                return m.reply("Kamu belum mulai memancing! Mulai dengan !fishing start.")
+            }
+            
+            if (fishing.lastCast && now < fishing.lastCast + 900000) {
+                const timeLeft = Func.clockString(fishing.lastCast + 900000 - now)
+                return m.reply(`🌊 Kailmu masih menari di arus! Lempar lagi dalam ${timeLeft}`)
+            }
+            
+            if (fishing.bait <= 0) {
+                delete sius.fishing[userId]
+                return m.reply("Umpanmu habis! \n\n> Gunakan *!fishing start* untuk membeli umpan baru.")
+            }
+            
+            fishing.bait--
+            fishing.lastCast = now
+            
+            // hitung peluang tangkapan
+            let rareChance = 0.05 // base chance untuk harta langka
+            if (user.activePet && user.pets[user.activePet]?.level) {
+                rareChance += 0.05 * user.pets[user.activePet].level
+            }
+            
+            const rand = Math.random()
+            let catchResult
+            let isRare = rand < rareChance
+            let totalChance = 0
+            
+            if (!isRare) {
+                for (let item of catches) {
+                    totalChance += item.chance
+                    if (rand < totalChance) {
+                        catchResult = item
+                        break
+                    }
+                }
+            }
+            
+            // proses tangkapan
+            let moneyGain = 0
+            let expGain = 20
+            let itemName = ""
+            let itemAmount = 1
+            
+            if (isRare) {
+                // harta langka
+                catchResult = { type: "rare", name: Math.random() < 0.5 ? "Pet Food Cache" : "Star Gem" }
+                expGain = 200
+                itemName = catchResult.name === "Pet Food Cache" ? "petFood" : null
+                itemAmount = catchResult.name === "Pet Food Cache" ? 2 : 0
+            } else if (catchResult.type === "fish") {
+                moneyGain = catchResult.money
+                expGain = Math.floor(catchResult.money / 2)
+                itemName = catchResult.name
+            } else {
+                itemName = catchResult.name
+                expGain = 50
+            }
+            
+            // terapkan bonus
+            if (user.guild) {
+                const guild = db.guilds[user.guild.toLowerCase()]
+                if (guild) moneyGain += Math.floor(moneyGain * (guild.level * 0.05))
+            }
+            if (user.eventBonus && user.eventBonusEnd && now < user.eventBonusEnd) {
+                expGain += Math.floor(expGain * user.eventBonus)
+            }
+            
+            // simpan hadiah
+            user.money = (user.money || 0) + moneyGain
+            if (itemName && itemName !== catchResult.name) {
+                user.inventory = user.inventory || {}
+                user.inventory[itemName] = (user.inventory[itemName] || 0) + itemAmount
+            }
+            
+            Func.addExp(user, expGain)
+            if (user.activePet) {
+                const petData = user.pets[user.activePet]
+                petData.exp = (petData.exp || 0) + Math.floor(expGain * 0.5)
+                const nextPetLevelExp = 100 + petData.level * 150
+                if (petData.exp >= nextPetLevelExp) {
+                    petData.level += 1
+                    petData.exp -= nextPetLevelExp
+                }
+                user.pets[user.activePet] = petData
+            }
+            
+            let replyText = `🌊 *Memancing di Sungai Bintang Arvandor!*\n\n`
+            replyText += `Kailmu menari di arus berkilau, dan kamu menarik tangkapan! ${user.activePet ? `*${user.activePet.toUpperCase()}* melompat kegirangan!` : ""}\n\n`
+            replyText += `🎣 *Tangkapan*: ${catchResult.name}${isRare ? " (Harta Langka!)" : ""}\n`
+            replyText += `🎁 *Hadiah*:\n`
+            if (moneyGain > 0) replyText += `   ▢ 💸 ${Func.formatUang(moneyGain)} Money\n`
+            if (itemName && itemName !== catchResult.name) replyText += `   ▢ 🎁 ${itemAmount} ${itemName}\n`
+            replyText += `   ▢ 📈 ${expGain} EXP\n`
+            if (user.activePet) replyText += `   ▢ 🐾 *${user.activePet.toUpperCase()}*: ${Math.floor(expGain * 0.5)} EXP\n`
+            replyText += `\n🎣 Umpan Tersisa: ${fishing.bait}\n`
+            replyText += fishing.bait > 0 ? `\n> Gunakan *!fishing cast* lagi dalam 15 menit atau !fishing leave untuk berhenti!` : `\n> Umpan habis! Gunakan *!fishing start* untuk membeli umpan baru.`
+            
+            sius.fishing[userId] = fishing
+            m.reply(replyText)
+        } else if (action === "leave") {
+            // akhiri sesi memancing
+            if (!fishing) {
+                return m.reply("Kamu belum mulai memancing! Mulai dengan !fishing start.")
+            }
+            
+            delete sius.fishing[userId]
+            
+            let replyText = `🌊 *Meninggalkan Sungai Bintang Arvandor*\n\n`
+            replyText += `Kamu menggulung kail dan meninggalkan sungai berkilau, langit Lembah Arvandor menyapamu dengan cahaya bintang. ${user.activePet ? `*${user.activePet.toUpperCase()}* mengikuti dengan riang!` : ""}\n\n`
+            replyText += `> Gunakan *!fishing start* untuk kembali memancing!`
+            
+            m.reply(replyText)
+        } else {
+            // status atau bantuan
+            let replyText = `🌊 *Sungai Bintang Arvandor*\n\n`
+            if (fishing) {
+                replyText += `Kamu sedang memancing di sungai berkilau, umpanmu menari di arus! ${user.activePet ? `*${user.activePet.toUpperCase()}* menatap air dengan penuh harap!` : ""}\n\n`
+                replyText += `🎣 Umpan Tersisa: ${fishing.bait}\n`
+                replyText += `Gunakan:\n`
+                replyText += `   ▢ !fishing cast: Lempar kail\n`
+                replyText += `   ▢ !fishing leave: Berhenti memancing`
+            } else {
+                replyText += `Sungai berkilau Lembah Arvandor memanggil, penuh ikan dan harta! ${user.activePet ? `*${user.activePet.toUpperCase()}* menggonggong, siap menemani!` : ""}\n\n`
+                replyText += `> Gunakan *!fishing start* untuk memancing (biaya: 💸 50 Money atau ⏳ 1 Limit).`
+            }
+            
+            m.reply(replyText)
+        }
+    }
+})
